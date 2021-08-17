@@ -8,9 +8,9 @@ describe('App component', () => {
     const display = screen.getByTestId('display');
     expect(display).toHaveStyle({ backgroundColor: '#FF0000' });
     
-    // const colorInput = screen.getByTestId('color-input');
-    // fireEvent.change(colorInput, { target: { value: '#0000FF' } });
-    // expect(display).toHaveStyle({ backgroundColor: '#0000FF' });
+    const colorInput = screen.getByTestId('color-input');
+    fireEvent.change(colorInput, { target: { value: '#0000FF' } });
+    expect(display).toHaveStyle({ backgroundColor: '#0000FF' });
     
     // const undoButton = screen.getByText('undo');
     // fireEvent.click(undoButton);

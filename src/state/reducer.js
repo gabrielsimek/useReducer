@@ -15,8 +15,15 @@ export const reducer = (state, action) => {
     case RECORD:
       return { 
         ...state, 
+        before: [...state.before, state.current], 
         current: action.payload,
-        before: [...state.before, action.payload] 
+      };
+    case UNDO: 
+      return {
+        ...state,
+        after: [state.current, ...state.after],
+        current: state.before[state.before.length - 1],
+        before: state.before.slice(0, -1)
       };
     default:
       return state;
