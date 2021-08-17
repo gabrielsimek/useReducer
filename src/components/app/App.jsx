@@ -5,11 +5,11 @@ import { undoAction, redoAction, recordAction } from '../../actions/actions.js';
 
 function App({ initialState }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
+
   const { current } = state;
-  const undo = () => {
-    dispatch(undoAction());
-  };
+  // const undo = () => {
+  //   dispatch(undoAction());
+  // };
   const redo = () => {
     dispatch(redoAction());
   };
@@ -19,7 +19,7 @@ function App({ initialState }) {
 
   return (
     <>
-      <button onClick={undo}>undo</button>
+      <button onClick={undoAction}>undo</button>
       <button onClick={redo}>redo</button>
       <input
         data-testid="color-input"
