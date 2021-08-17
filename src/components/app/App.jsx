@@ -1,37 +1,21 @@
-import React, { useState } from 'react';
-
-const useRecord = (init) => {
-  const [before, setBefore] = useState([]);
-  const [current, setCurrent] = useState(init);
-  const [after, setAfter] = useState([]);
-
-  const undo = () => {
-    setAfter((after) => [current, ...after]);
-    setCurrent(before[before.length - 1]);
-    setBefore((before) => before.slice(0, -1));
-  };
-
-  const redo = () => {
-    setBefore((before) => [...before, current]);
-    setCurrent(after[0]);
-    setAfter((after) => after.slice(1));
-  };
-
-  const record = (val) => {
-    setBefore((before) => [...before, current]);
-    setCurrent(val);
-  };
-
-  return {
-    undo,
-    record,
-    redo,
-    current,
-  };
-};
+import React from 'react';
+import { undoAction, redoAction, recordAction } from '../../state/actions.js';
+import { useDispatch, useSelector } from '../../state/ReduxProvider';
+import { selectCurrent } from '../../state/selectors';
 
 function App() {
-  const { current, undo, redo, record } = useRecord('#FF0000');
+  const dispatch = useDispatch();
+  const current = useSelector(selectCurrent);
+
+  const undo = () => {
+    dispatch(undoAction());
+  };
+  const redo = () => {
+    dispatch(redoAction());
+  };
+  const record = (value) => {
+    dispatch(recordAction(value));
+  };
 
   return (
     <>
@@ -52,3 +36,4 @@ function App() {
 }
 
 export default App;
+
