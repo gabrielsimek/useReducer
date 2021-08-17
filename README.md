@@ -6,18 +6,36 @@ const useRecord = (init) => {
   const [after, setAfter] = useState([]);
 
   const undo = () => {
+      current 'green'
+      before ['red', 'yellowish']
+      current = 'before[before.length - 1]' = yellow
+      after ['green']
+    before =  ['red'] 
+
     setAfter((after) => [current, ...after]);
     setCurrent(before[before.length - 1]);
     setBefore((before) => before.slice(0, -1));
   };
 
   const redo = () => {
+      before = ['red']
+      current = 'yellow'
+      after = ['green']
+      before => ['red', 'yellow']
+      current => ['green'][0] => 'green'
+      after => ['green', 1].slice(1) => []
+      
     setBefore((before) => [...before, current]);
     setCurrent(after[0]);
     setAfter((after) => after.slice(1));
   };
 
   const record = (val) => {
+    before []
+    current: 'red'
+
+    ['red', 'yellow']
+
     setBefore((before) => [...before, current]);
     setCurrent(val);
   };
