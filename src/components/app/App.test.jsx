@@ -1,12 +1,20 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { initialState } from '../../state/reducer';
+import { initialState, reducer } from '../../state/reducer';
+import { ReduxProvider } from '../../state/ReduxProvider';
 import App from './App';
 
 describe('App component', () => {
   
   it('renders App', () => {
-    render(<App initialState={initialState}/>);
+    render(
+      <ReduxProvider
+        initialState={initialState}
+        reducer={reducer}
+      >
+        <App/>
+      </ReduxProvider>
+    );
 
     //initial display or red
     const display = screen.getByTestId('display');
