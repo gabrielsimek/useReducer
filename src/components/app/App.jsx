@@ -1,24 +1,35 @@
 import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import reducer from '../../state/reducer';
-import { record, undo, redo } from '../../actions/actions.js';
+import { undoAction, redoAction, recordAction } from '../../actions/actions.js';
 
 function App({ initialState }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   
+  const { current } = state;
+  const undo = () => {
+    dispatch(undoAction());
+  };
+  const redo = () => {
+    dispatch(redoAction());
+  };
+  const record = (value) => {
+    dispatch(recordAction(value));
+  };
+
   return (
     <>
-      <button onClick={() => dispatch(undo())}>undo</button>
-      <button onClick={() => dispatch(redo())}>redo</button>
+      <button onClick={undo}>undo</button>
+      <button onClick={redo}>redo</button>
       <input
         data-testid="color-input"
         type="color"
-        value={state.current}
-        onChange={({ target }) => dispatch(record(target.value))}
+        value={current}
+        onChange={({ target }) => record(target.value)}
       />
       <div
         data-testid="display"
-        style={{ backgroundColor: state.current, width: '10rem', height: '10rem' }}
+        style={{ backgroundColor: current, width: '10rem', height: '10rem' }}
       ></div>
     </>
   );
