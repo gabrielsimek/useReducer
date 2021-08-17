@@ -1,11 +1,12 @@
-import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
-import reducer from '../../state/reducer';
-import { undoAction, redoAction, recordAction } from '../../actions/actions.js';
+import React from 'react';
+import { undoAction, redoAction, recordAction } from '../../state/actions.js';
+import { useDispatch, useSelector } from '../../state/ReduxProvider';
+import { selectCurrent } from '../../state/selectors';
 
-function App({ initialState }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { current } = state;
+function App() {
+  const dispatch = useDispatch();
+  const current = useSelector(selectCurrent);
+
   const undo = () => {
     dispatch(undoAction());
   };
@@ -36,6 +37,3 @@ function App({ initialState }) {
 
 export default App;
 
-App.propTypes = {
-  initialState: PropTypes.object.isRequired
-};

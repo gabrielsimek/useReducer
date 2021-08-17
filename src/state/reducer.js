@@ -1,4 +1,4 @@
-import { UNDO, REDO, RECORD } from '../actions/actions';
+import { UNDO, REDO, RECORD } from './actions';
 
 export const initialState = {
   before: [],
@@ -6,7 +6,7 @@ export const initialState = {
   after: []
 };
 
-export default function reduce(state, action)  {
+export function reducer(state, action)  {
   switch(action.type) {
     case RECORD:
       return { 
