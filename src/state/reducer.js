@@ -1,16 +1,12 @@
-export const undo = () => ({ type: UNDO });
-export const UNDO = 'UNDO';
+import { UNDO, REDO, RECORD } from '../actions/actions';
 
-export const REDO = 'REDO';
-export const redo = () => ({ type: REDO });
+export const initialState = {
+  before: [],
+  current: '#FF0000',
+  after: []
+};
 
-export const RECORD = 'RECORD';
-export const record = (color) => ({
-  type: RECORD,
-  payload: color
-});
-
-export const reducer = (state, action) => {
+export default function reduce(state, action)  {
   switch(action.type) {
     case RECORD:
       return { 
@@ -35,4 +31,4 @@ export const reducer = (state, action) => {
     default:
       return state;
   }
-};
+}
