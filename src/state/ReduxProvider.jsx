@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useContext, useReducer } from 'react';
 
-
 const ReduxContext = createContext();
 
 export const ReduxProvider = ({ children, initialState, reducer }) => {
