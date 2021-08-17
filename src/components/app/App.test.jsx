@@ -12,13 +12,13 @@ describe('App component', () => {
     fireEvent.change(colorInput, { target: { value: '#0000FF' } });
     expect(display).toHaveStyle({ backgroundColor: '#0000FF' });
     
-    // const undoButton = screen.getByText('undo');
-    // fireEvent.click(undoButton);
-    // expect(display).toHaveStyle({ backgroundColor: '#FF0000' });
+    const undoButton = screen.getByText('undo');
+    fireEvent.click(undoButton);
+    expect(display).toHaveStyle({ backgroundColor: '#FF0000' });
 
-    // const redoButton = screen.getByText('redo');
-    // fireEvent.click(redoButton);
-    // expect(display).toHaveStyle({ backgroundColor: '#0000FF' });
+    const redoButton = screen.getByText('redo');
+    fireEvent.click(redoButton);
+    expect(display).toHaveStyle({ backgroundColor: '#0000FF' });
 
 
 

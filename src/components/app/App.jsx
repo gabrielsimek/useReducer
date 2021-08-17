@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { reducer, record, undo } from '../../state/reducer';
+import { reducer, record, undo, redo } from '../../state/reducer';
 
 
 
@@ -8,17 +8,17 @@ import { reducer, record, undo } from '../../state/reducer';
 //   const [current, setCurrent] = useState(init);
 //   const [after, setAfter] = useState([]);
 
-//   const undo = () => {
-//     setAfter((after) => [current, ...after]); //
-//     setCurrent(before[before.length - 1]); //
-//     setBefore((before) => before.slice(0, -1));//
-//   };
+// const undo = () => {
+//   setAfter((after) => [current, ...after]); //
+//   setCurrent(before[before.length - 1]); //
+//   setBefore((before) => before.slice(0, -1));//
+// };
 
-//   const redo = () => {
-//     setBefore((before) => [...before, current]);
-//     setCurrent(after[0]);
-//     setAfter((after) => after.slice(1));
-//   };
+// const redo = () => {
+//   setBefore((before) => [...before, current]);//
+//   setCurrent(after[0]);//
+//   setAfter((after) => after.slice(1));
+// };
 
 // const record = (val) => {
 //   setBefore((before) => [...before, current]);
@@ -63,7 +63,7 @@ function App() {
   return (
     <>
       <button onClick={() => dispatch(undo())}>undo</button>
-      {/* <button onClick={redo}>redo</button> */}
+      <button onClick={() => dispatch(redo())}>redo</button>
       <input
         data-testid="color-input"
         type="color"
